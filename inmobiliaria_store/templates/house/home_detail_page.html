@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% load static wagtailcore_tags wagtailimages_tags humanize %}
+
+{% block content %}
+<!-- Shop Detail Start -->
+<div class="container-fluid ">
+    <div class="row px-xl-5 mt-5">
+        <div class="col-md-7 animated fadeIn">
+            <div class="owl-carousel header-carousel">
+                {% for loop_cycle in self.imagenes_inmueble.all %}
+                {% image loop_cycle.imagen_inmueble fill-1080x760 as img%}
+                <div class="owl-carousel-item">
+                    <img class="img-fluid" src="{{img.url}}" alt="">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+        <div class="col-lg-5 pb-5 mt-2">
+            <h3 class="font-weight-semi-bold">{{self.titulo_inmueble}}</h3>
+            <h3 class="font-weight-semi-bold mb-4 price-color-text">${{self.precio_inmueble|intcomma }}</h3>
+            <div class="d-flex mb-4">
+                {% if self.categoria%}
+                {% for cat in self.categoria.all%}
+                <i class="fa fa-circle icon-color"></i><h6 class="detail-property-subtitle">Categoria:</h6>
+                <a href="{{ self.get_parent.url}}?categoria={{ cat_slug }}">
+                    <p class="detail-text mb-0 mr-3">
+                         {{ cat.nombre_categoria}}</p>
+                </a>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <div class="d-flex mb-4">
+                {% if self.area_inmueble%}
+                <i class="fa fa-ruler icon-color"></i><h6 class="detail-property-subtitle">Area del inmueble:</h6>
+                <p class="mb-0 detail-text"> {{ self.area_inmueble}} metros</p>
+                {% endif %}
+            </div>
+            <div class="d-flex mb-4">
+                {% if self.numero_habitaciones %}
+                <i class="fa fa-door-open icon-color"></i><h6 class="detail-property-subtitle">Numero de habitaciones:</h6>
+                <p class="detail-text mb-0 mr-3">{{ self.numero_habitaciones }}</p>
+                {% endif %}
+            </div>
+            <div class="d-flex mb-4">
+                {% if self.numero_banos %}
+                <i class="fa fa-bath icon-color"></i><h6 class="detail-property-subtitle">Numero de baños:</h6>
+                <p class="detail-text mb-0 mr-3">{{ self.numero_banos }}</p>
+                {% endif %}
+            </div>
+            <div class="d-flex mb-4">
+                {% if self.antiguedad_del_inmueble%}
+                <i class="fa fa-history icon-color"></i><h6 class="detail-property-subtitle">Año de construccion:</h6>
+                <p class="detail-text mb-0 mr-3">{{self.antiguedad_del_inmueble}}</p>
+                {% endif %}
+            </div>
+            <div class="d-flex mb-4">
+                {% if self.numero_contacto%}
+                <i class="fa fa-phone-alt icon-color"></i><h6 class="detail-property-subtitle">Contacto:</h6>
+                <p class="detail-text mb-0 mr-3">
+                     <a class="link-custom" href="tel:(+57){{self.numero_contacto}}">
+                    {{self.numero_contacto}}</a>
+                </p>
+                {% endif %}
+            </div>
+            <div class="d-flex mb-4">
+                <i class="fa fa-calendar-alt icon-color"></i><h6 class="detail-property-subtitle">Publicado:</h6>
+                <p class="detail-text mb-0 mr-3">{{self.fecha_publicacion}}</p>
+            </div>
+            <div class="d-flex pt-2">
+                <p class="detail-property-subtitle mb-0 mr-2">Compartir en:</p>
+                <div class="d-inline-flex">
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row px-xl-5">
+    <div class="col">
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="tab-pane-1">
+                <h4 class="mt-3 mb-3">Descripción del inmueble</h4>
+                {% if self.descripcion_inmueble %}
+                <p>{{ self.descripcion_inmueble | richtext}}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Shop Detail End -->
+
+
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% load static wagtailcore_tags wagtailimages_tags humanize %}
+
+{% block content %}
+
+
+<!-- Page Content -->
+
+
+<div class="container py-2">
+    <div class="row text-center text-title mb-5">
+        <div class="col-lg-7 mx-auto">
+            {% for post in posts%}
+            {% for m in post.mercado.all %}
+            <h4 class="display-4">Fitro por: {{ m.nombre_mercado }}</h4>
+            {% endfor %}
+            {% endfor %}
+        </div>
+
+        {% if posts %}
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <!-- List group-->
+                <ul class="list-group shadow">
+                    <!-- list group item-->
+                    {% for post in posts %}
+                    <li class="list-group-item">
+                        <!-- Custom content-->
+                        <div class="media align-items-lg-center flex-column flex-lg-row p-3">
+                            <div class="media-body order-2 order-lg-1">
+                                <a href="{% pageurl post %}">
+                                    <h5 class="mt-0 font-weight-bold mb-2">{{post.titulo_inmueble}}</h5>
+                                    {% if post.resumen %}
+                                    <p class="font-italic text-muted mb-0 small">Descripcion:
+                                        {{post.resumen | richtext }}</p>
+                                    {% endif %}
+                                    <div class="d-flex align-items-center justify-content-between mt-1">
+                                        <h6 class="font-weight-bold my-2">Precio: $
+                                            {{post.precio_inmueble|intcomma}}</h6>
+                                    </div>
+                                </a>
+                            </div>
+                            <a href="{% pageurl post %}">
+                                <div>
+                                    {% image post.main_image fill-300x170 %}
+                                    {% if post.main_image %}
+
+                                    <img src="{{post.main_image.url}}" width="100"
+                                         class="ml-lg-1 order-1 order-lg-2">
+
+                                    {% else %}
+                                    <img src="{% static 'Images/Not_image_found.png' %}"
+                                         width="100"
+                                         class="ml-lg-1 order-1 order-lg-2">
+                                    {% endif %}
+                                </div>
+                            </a>
+                        </div> <!-- End -->
+                    </li> <!-- End -->
+                    {% endfor %}
+                </ul> <!-- End -->
+            </div>
+        </div>
+        {% else %}
+        <div class="container-fluid text-center">
+            <div class="card px-5 py-5">
+                <h1 class="not-found">Items No encontrados</h1>
+                <h3>Lo sentimos! No hay elementos aun en esta Categoria.</h3>
+                <div class="text-center mt-4 mb-5">
+                    <a href="/">
+                        <button class="btn btn-success send px-3"><i class="fa fa-long-arrow-left mr-1"></i> Retornar a
+                            inicio.
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+
+<!-- /.row -->
+<br>
+<hr>
+
+
+<!-- Pagination -->
+{% if posts.paginator.num_pages > 1%}
+<ul class="pagination justify-content-center">
+    {% if posts.has_previous %}
+    <li class="page-item">
+        <a class="page-link" href="?page={{ posts.previous_page_number }}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+        </a>
+    </li>
+    {% endif %}
+    {% for page_num in posts.paginator.page_range%}
+    <li class="page-item {% if page_num == posts.number %} active {% endif %}">
+        <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
+    </li>
+    {% endfor %}
+    {% if posts.has_next %}
+    <li class="page-item">
+        <a class="page-link" href="?page={{ posts.next_page_number }}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+        </a>
+    </li>
+    {% endif %}
+</ul>
+{% endif %}
+{% endblock %}
