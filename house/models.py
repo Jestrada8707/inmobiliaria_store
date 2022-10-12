@@ -53,6 +53,7 @@ class ListadoPropiedades(RoutablePageMixin, Page):
         context['posts'] = posts
         context["categoria"] = Categorias.objects.all()
         context["mercado"] = Mercados.objects.all()
+        context["ubicacion"] = Ubicaciones.objects.all()
         return context
 
     @route(r'^cat/(?P<cat_slug>[-\w]*)/$', name="category_view")
@@ -111,6 +112,8 @@ class AgregarPropiedad(Page):
 
     categoria = ParentalManyToManyField("house.Categorias", blank=False)
 
+    ubicacion = ParentalManyToManyField("house.Ubicaciones", blank=False)
+
     area_inmueble = models.CharField(
         blank=True,
         null=True,
@@ -150,11 +153,11 @@ class AgregarPropiedad(Page):
 
     )
 
-    ubicacion = models.CharField(
+    barrio = models.CharField(
         blank=True,
         null=True,
         max_length=100,
-        help_text='Barrio o Municipio'
+        help_text='Barrio'
 
     )
 
@@ -184,13 +187,14 @@ class AgregarPropiedad(Page):
             FieldPanel('titulo_inmueble'),
             FieldPanel('mercado', widget=forms.CheckboxSelectMultiple),
             FieldPanel('categoria', widget=forms.CheckboxSelectMultiple),
+            FieldPanel('ubicacion', widget=forms.CheckboxSelectMultiple),
             FieldPanel('precio_inmueble'),
             FieldPanel('area_inmueble'),
             FieldPanel('numero_habitaciones'),
             FieldPanel('numero_banos'),
             FieldPanel('numero_contacto'),
             FieldPanel('antiguedad_del_inmueble'),
-            FieldPanel('ubicacion'),
+            FieldPanel('barrio'),
             FieldPanel('descripcion_inmueble'),
         ], heading='Datos del inmueble'),
         MultiFieldPanel([
@@ -199,6 +203,7 @@ class AgregarPropiedad(Page):
     ]
 
     parent_page_types = ['house.ListadoPropiedades']
+
 
 class ImagenesInmueble(Orderable):
     """ Imagenes del inmueble entre 1 y 12."""
@@ -268,3 +273,23 @@ class Mercados(models.Model):
 
 
 register_snippet(Mercados)
+
+
+class Ubicaciones(models.Model):
+    nombre_ubicacion = models.CharField(max_length=255)
+    slug = AutoSlugField(populate_from='nombre_ubicacion', editable=True)
+
+    panels = [
+        FieldPanel('nombre_ubicacion'),
+        FieldPanel('slug'),
+    ]
+
+    def __str__(self):
+        return self.nombre_ubicacion
+
+    class Meta:
+        verbose_name_plural = 'Ubicaciones'
+        ordering = ["nombre_ubicacion"]
+
+
+register_snippet(Ubicaciones)
