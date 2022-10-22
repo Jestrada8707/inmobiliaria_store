@@ -21,44 +21,46 @@
         <div class="col-lg-5 pb-5 mt-2">
             <h3 class="font-weight-semi-bold">{{self.titulo_inmueble}}</h3>
             <h3 class="font-weight-semi-bold mb-4 price-color-text">${{self.precio_inmueble|intcomma }}</h3>
+            {% if self.area_inmueble%}
             <div class="d-flex mb-4">
-                {% if self.area_inmueble%}
                 <i class="fa fa-ruler icon-color"></i><h6 class="detail-property-subtitle">Area del inmueble:</h6>
                 <p class="mb-0 detail-text"> {{ self.area_inmueble}} metros</p>
-                {% endif %}
             </div>
+            {% endif %}
+            {% if self.numero_habitaciones %}
             <div class="d-flex mb-4">
-                {% if self.numero_habitaciones %}
                 <i class="fa fa-door-open icon-color"></i><h6 class="detail-property-subtitle">Numero de
                 habitaciones:</h6>
                 <p class="detail-text mb-0 mr-3">{{ self.numero_habitaciones }}</p>
-                {% endif %}
             </div>
+            {% endif %}
+            {% if self.numero_banos %}
             <div class="d-flex mb-4">
-                {% if self.numero_banos %}
                 <i class="fa fa-bath icon-color"></i><h6 class="detail-property-subtitle">Numero de baños:</h6>
                 <p class="detail-text mb-0 mr-3">{{ self.numero_banos }}</p>
-                {% endif %}
             </div>
+            {% endif %}
+            {% if self.antiguedad_del_inmueble%}
             <div class="d-flex mb-4">
-                {% if self.antiguedad_del_inmueble%}
                 <i class="fa fa-history icon-color"></i><h6 class="detail-property-subtitle">Año de construccion:</h6>
                 <p class="detail-text mb-0 mr-3">{{self.antiguedad_del_inmueble}}</p>
-                {% endif %}
             </div>
+            {% endif %}
+            {% if self.fecha_publicacion%}
             <div class="d-flex mb-4">
                 <i class="fa fa-calendar-alt icon-color"></i><h6 class="detail-property-subtitle">Publicado:</h6>
                 <p class="detail-text mb-0 mr-3">{{self.fecha_publicacion}}</p>
             </div>
+            {% endif %}
+            {% if self.numero_contacto%}
             <div class="d-flex mb-4">
-                {% if self.numero_contacto%}
                 <i class="fa fa-phone-alt icon-color"></i><h6 class="detail-property-subtitle">Contacto:</h6>
                 <p class="detail-text mb-0 mr-3">
                     <a class="btn btn-custom btn-sm" href="tel:(+57){{self.numero_contacto}}">
                         {{self.numero_contacto}}</a>
                 </p>
-                {% endif %}
             </div>
+            {% endif %}
             <div class="d-flex">
                 <p class="detail-property-subtitle mr-2">Compartir en:</p>
                 <div class="d-inline-flex">
@@ -80,39 +82,39 @@
 <div class="row align-items-end category-list">
     <div class="col-lg-6 text-start text-lg-end wow slideInRight" data-wow-delay="0.1s">
         <ul class="nav nav-pills d-inline-flex justify-content-end">
-            <li class="nav-item me-2">
-                <i class="fa fa-circle icon-color py-3"></i><small class="detail-property-subtitle">Categoria:</small>
+            <li class="nav-item category-margin">
+                <i class="fa fa-circle icon-color py-3"></i><small class="category-title">Categoria:</small>
             </li>
-            <li class="nav-item me-2">
+            <li class="nav-item category-margin">
                 {% if self.categoria%}
                 {% for cat in self.categoria.all%}
                 <a href="{{ self.get_parent.url}}?categoria={{ cat_slug }}">
-                    <p class="category-text py-3">{{ cat.nombre_categoria}}</p>
+                    <p class="category-subtitle py-3">{{ cat.nombre_categoria}}</p>
                 </a>
                 {% endfor %}
                 {% endif %}
             </li>
-            <li class="nav-item me-2">
+            <li class="nav-item category-margin">
                 <i class="fa fa-map-marker icon-color py-3"></i><small
-                    class="detail-property-subtitle">Ubicación:</small>
+                    class="category-title">Ubicación:</small>
             </li>
-            <li class="nav-item me-2">
+            <li class="nav-item category-margin">
                 {% if self.ubicacion%}
                 {% for cat in self.ubicacion.all%}
                 <a href="{{ self.get_parent.url}}?ubicacion={{ cat_slug }}">
-                    <p class="category-text py-3">{{ cat.nombre_ubicacion}}</p>
+                    <p class="category-subtitle py-3">{{ cat.nombre_ubicacion}}</p>
                 </a>
                 {% endfor %}
                 {% endif %}
             </li>
-            <li class="nav-item me-2">
-                <i class="fa fa-file icon-color py-3"></i><small class="detail-property-subtitle">Mercado:</small>
+            <li class="nav-item category-margin">
+                <i class="fa fa-file icon-color py-3"></i><small class="category-title">Mercado:</small>
             </li>
-            <li class="nav-item me-2">
+            <li class="nav-item category-margin">
                 {% if self.mercado%}
                 {% for cat in self.mercado.all%}
                 <a href="{{ self.get_parent.url}}?mercado={{ cat_slug }}">
-                    <p class="category-text py-3">{{ cat.nombre_mercado}}</p>
+                    <p class="category-subtitle py-3">{{ cat.nombre_mercado}}</p>
                 </a>
                 {% endfor %}
                 {% endif %}
@@ -120,7 +122,7 @@
         </ul>
     </div>
 </div>
-<div class="row px-xl-5">
+<div class="row px-xl-5 px-md-5 px-sm-5">
     <div class="col">
         <div class="tab-content">
             <div class="tab-pane fade show active" id="tab-pane-1">

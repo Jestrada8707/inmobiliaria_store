@@ -10,8 +10,8 @@
     <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
         {% for post in posts|slice:"1" %}
         <div class="col-md-12 filter-title-space">
-            {% for cat in post.categoria.all|slice:"1" %}
-            <h1 class="display-5 animated fadeIn mb-4">Filtro por: {{ cat.nombre_categoria }} </h1>
+            {% for u in post.ubicacion.all|slice:"1" %}
+            <h1 class="display-5 animated fadeIn mb-4">Filtro por: {{ u.nombre_ubicacion }} </h1>
             {% endfor %}
         </div>
         {% endfor %}

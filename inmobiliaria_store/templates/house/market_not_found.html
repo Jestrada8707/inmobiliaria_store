@@ -3,15 +3,13 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
-<div class="container-fluid text-center">
-    <div class="card px-5 py-5">
-        <h1 class="not-found">Error</h1>
-        <h3>Lo sentimos! El sitio no existe.</h3>
-        <div class="text-center mt-4 mb-5">
-            <a href="/">
-                <button class="btn btn-success send px-3"><i class="fa fa-long-arrow-left mr-1"></i> Retornar a inicio.
-            </a>
-            </button>
+<div class="container-fluid header bg-white p-0">
+    <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
+        <div class="col-md-6 p-5 mt-lg-5">
+            <h1 class="display-5 animated fadeIn mb-4">¡Lo sentimos! El mercado no existe. </h1>
+        </div>
+        <div class="col-md-6 animated fadeIn">
+            <img class="img-fluid" src="/static/img/header.jpg" alt="">
         </div>
     </div>
 </div>

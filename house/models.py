@@ -39,7 +39,7 @@ class ListadoPropiedades(RoutablePageMixin, Page):
         context = super().get_context(request, *args, **kwargs)
         detail_pages = AgregarPropiedad.objects.live().public().order_by('-first_published_at')
 
-        paginator = Paginator(detail_pages, 8)
+        paginator = Paginator(detail_pages, 12)
 
         page = request.GET.get('page')
 
@@ -85,6 +85,21 @@ class ListadoPropiedades(RoutablePageMixin, Page):
 
         context["posts"] = AgregarPropiedad.objects.live().public().filter(mercado__in=[market])
         return render(request, "house/market_filter_page.html", context)
+
+    @route(r'^location/(?P<location_slug>[-\w]*)/$', name="location_view")
+    def location_view(self, request, location_slug):
+        """Encontrar publicaciones por locacion"""
+
+        context = self.get_context(request)
+
+        try:
+            location = Ubicaciones.objects.get(slug=location_slug)
+
+        except Mercados.DoesNotExist:
+            return render(request, "house/location_not_found.html")
+
+        context["posts"] = AgregarPropiedad.objects.live().public().filter(ubicacion__in=[location])
+        return render(request, "house/location_filter_page.html", context)
 
 
 class AgregarPropiedad(Page):
