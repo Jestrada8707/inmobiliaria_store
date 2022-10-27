@@ -46,13 +46,14 @@
 }
 
 .category-title {
-	font-family: "Ubuntu", sans-serif;
-	font-weight: 700;
-	line-height: 1.0;
-	color: #0E2E50;
-	margin-left: 10px;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 700;
+    line-height: 1.0;
+    color: #0E2E50;
+    margin-left: 10px;
     font-size: 15px;
 }
+
 .category-subtitle {
     font-family: "Ubuntu", sans-serif;
     font-weight: 400;
@@ -61,7 +62,7 @@
     font-size: 15px;
 }
 
-.category-margin{
+.category-margin {
     margin-right: 0.5rem;
 }
 
@@ -72,79 +73,92 @@
     }
 }
 
-.search-bar-color{
+.search-bar-color {
     background-color: #fab51b !important;
 }
 
 .btn-filter {
-	color: #FFFFFF;
-	background-color: #0E2E50;
-	border-color: #0E2E50;
+    color: #FFFFFF;
+    background-color: #0E2E50;
+    border-color: #0E2E50;
 }
 
-.btn-filter:hover{
+.btn-filter:hover {
     color: #fab51b;
     border: none;
-    border-radius: 10px ;
+    border-radius: 10px;
 }
 
-.btn-filter:focus{
+.btn-filter:focus {
     outline-color: transparent;
-    outline-style:solid;
+    outline-style: solid;
     box-shadow: 0 0 0 4px #fab51b;
 }
 
-.item-text-color{
+.item-text-color {
     color: #0E2E50 !important;
 }
 
 .item-category-color {
-	background-color: #0E2E50 !important;
+    background-color: #0E2E50 !important;
     color: #FFFFFF;
 }
 
 .property-item .border-top {
-	border-top: 1px dashed rgba(14, 46, 80, 1) !important;
+    border-top: 1px dashed rgba(14, 46, 80, 1) !important;
 }
 
 .property-item .border-end {
-	border-right: 1px dashed rgba(14, 46, 80, 1) !important;
+    border-right: 1px dashed rgba(14, 46, 80, 1) !important;
 }
 
-.h5:hover{
+.h5:hover {
     color: #fab51b;
     transition: 0.4s;
 }
 
 .page-item.active .page-link {
-	z-index: 3;
-	color: #fff;
-	background-color: #fab51b;
-	border-color: #fab51b;
+    z-index: 3;
+    color: #fff;
+    background-color: #fab51b;
+    border-color: #fab51b;
 }
 
 .page-link {
-	position: relative;
-	display: block;
-	color: #fab51b;
-	background-color: #fff;
-	border: 1px solid #dee2e6;
-	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    position: relative;
+    display: block;
+    color: #fab51b;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-.page-link:hover{
+.page-link:hover {
     color: #0E2E50;
 }
 
-.page-link:focus{
+.page-link:focus {
     outline-color: transparent;
-    outline-style:solid;
+    outline-style: solid;
     box-shadow: 0 0 0 4px #0E2E50;
 }
 
-.filter-title-space{
+.filter-title-space {
     margin-top: 160px;
     margin-bottom: 30px;
     margin-left: 30px;
+}
+
+.cat-color {
+    background-color: #ced5dc !important;
+}
+
+a {
+    color: #0E2E50;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #566c84 !important;
 }
 
