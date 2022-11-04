@@ -10,14 +10,14 @@
         <div class="col-md-6 p-5 mt-lg-5">
             {% for mb in self.main_banner.all %}
             <h1 class="display-5 animated fadeIn mb-4">{{mb.titulo_principal}}</h1>
-                {% if mb.texto_principal%}
-                <p class="animated fadeIn mb-4 pb-2">{{mb.texto_principal}}</p>
-                {% endif %}
-                {% if mb.titulo_boton %}
-                <a class="btn btn-primary py-3 px-5 me-3 animated fadeIn" href="{{mb.link}}"
-                   {% if mb.abrir_nueva_ventana %} target=_blank {% endif %}>{{ mb.titulo_boton }}</a>
-                {% endif %}
-                {% endfor %}
+            {% if mb.texto_principal%}
+            <p class="animated fadeIn mb-4 pb-2">{{mb.texto_principal}}</p>
+            {% endif %}
+            {% if mb.titulo_boton and mb.link %}
+            <a class="btn btn-custom py-3 px-5 me-3 animated fadeIn" href="{{mb.link}}"
+               {% if mb.abrir_nueva_ventana %} target=_blank {% endif %}>{{ mb.titulo_boton }}</a>
+            {% endif %}
+            {% endfor %}
         </div>
         <div class="col-md-6 animated fadeIn">
             <div class="owl-carousel header-carousel">
@@ -58,6 +58,7 @@
 
 
 <!-- Category Start -->
+{% if categorias %}
 <div class="container-xxl py-3">
     <div class="container">
         <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
@@ -85,31 +86,39 @@
         </div>
     </div>
 </div>
+{% endif %}
 <!-- Category End -->
 
 
 <!-- About Start -->
+{% if banner_sell %}
 <div class="container-xxl py-5">
     <div class="container">
+        {% for sb in banner_sell %}
         <div class="row g-5 align-items-center">
             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                {% image sb.imagen_banner fill-1000x1200 as img%}
                 <div class="about-img position-relative overflow-hidden p-5 pe-0">
-                    <img class="img-fluid w-100" src="img/about.jpg">
+                    <img class="img-fluid w-100" src="{{img.url}}">
                 </div>
             </div>
             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                <h1 class="mb-4">#1 Place To Find The Perfect Property</h1>
-                <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et
-                    eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat
-                    amet</p>
-                <p><i class="fa fa-check text-primary me-3"></i>Tempor erat elitr rebum at clita</p>
-                <p><i class="fa fa-check text-primary me-3"></i>Aliqu diam amet diam et eos</p>
-                <p><i class="fa fa-check text-primary me-3"></i>Clita duo justo magna dolore erat amet</p>
-                <a class="btn btn-primary py-3 px-5 mt-3" href="">Read More</a>
+                <h1 class="mb-4">{{ sb.titulo_banner}}</h1>
+                <p class="mb-4">{{ sb.texto_banner | richtext}}</p>
+                {% for r in sb.requisitos.all %}
+                <p><i class="fa fa-check icon-color text-primary me-3"></i>{{ r.requerimiento_venta }}</p>
+                {% endfor%}
+                {% if sb.titulo_boton and sb.link %}
+                <a class="btn btn-custom py-3 px-5 mt-3" href="{{sb.link}}"{% if sb.abrir_nueva_ventana %} target=_blank {% endif %}>
+                    {{ sb.titulo_boton}}
+                </a>
+                {% endif %}
             </div>
         </div>
+        {% endfor %}
     </div>
 </div>
+{% endif %}
 <!-- About End -->
 
 

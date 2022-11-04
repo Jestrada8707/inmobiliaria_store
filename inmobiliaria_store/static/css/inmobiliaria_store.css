@@ -42,7 +42,18 @@
 .btn-custom {
     color: #FFFFFF;
     background-color: #fab51b;
-    border-color: #fab51b;
+}
+
+.btn-custom:hover {
+    color: #0E2E50;
+    border: none;
+    border-radius: 10px;
+}
+
+.btn-custom:focus {
+    outline-color: transparent;
+    outline-style: solid;
+    box-shadow: 0 0 0 4px #ced5dc;
 }
 
 .category-title {
