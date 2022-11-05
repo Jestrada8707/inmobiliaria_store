@@ -26,7 +26,10 @@ INSTALLED_APPS = [
     "home",
     "house",
     "search",
+    "social_media_setting",
+    "custom_nav_button",
 
+    'wagtail.contrib.settings',
     'wagtail.contrib.routable_page',
     'wagtail.contrib.sitemaps',
     "wagtail.contrib.forms",
@@ -81,6 +84,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                'wagtail.contrib.settings.context_processors.settings',
             ],
         },
     },
@@ -173,3 +177,7 @@ WAGTAILSEARCH_BACKENDS = {
 WAGTAILADMIN_BASE_URL = "http://example.com"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+WAGTAILEMBEDS_RESPONSIVE_HTML = True
+
+WAGTAILIMAGES_MAX_UPLOAD_SIZE = 30 * 1024 * 1024

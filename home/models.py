@@ -33,7 +33,7 @@ class HomePage(RoutablePageMixin, Page):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-        context['posts'] = AgregarPropiedad.objects.live().public().order_by('-first_published_at')[:3]
+        context['posts'] = AgregarPropiedad.objects.live().public().order_by('-first_published_at')[:6]
         context['categorias'] = Categorias.objects.all()
         context['banner_sell'] = BanerVenta.objects.all()
         return context
