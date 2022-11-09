@@ -13,6 +13,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.core.fields import RichTextField
 from wagtail.snippets.models import register_snippet
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
+from wagtail.search import index
 
 
 class ListadoPropiedades(RoutablePageMixin, Page):
@@ -205,6 +206,27 @@ class AgregarPropiedad(Page):
 
     def titulo_corto(self):
         return self.titulo_inmueble[:40]
+
+    search_fields = Page.search_fields + [
+        index.SearchField('descripcion_inmueble'),
+        index.SearchField('titulo_inmueble'),
+        index.FilterField('fecha_publicacion'),
+
+        index.RelatedFields('ubicacion', [
+            index.SearchField('nombre_ubicacion', partial_match=True),
+            index.FilterField('slug'),
+        ]),
+
+        index.RelatedFields('categoria', [
+            index.SearchField('nombre_categoria', partial_match=True),
+            index.FilterField('slug'),
+        ]),
+
+        index.RelatedFields('mercado', [
+            index.SearchField('nombre_mercado', partial_match=True),
+            index.FilterField('slug'),
+        ]),
+    ]
 
     content_panels = Page.content_panels + [
         MultiFieldPanel([
