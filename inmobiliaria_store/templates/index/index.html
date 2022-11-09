@@ -35,16 +35,16 @@
 
 
 <!-- Search Start -->
+<form action="{% url 'search' %}" method="get">
 <div class="container-fluid search-bar-color mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
     <div class="container">
         <div class="row g-2">
             <div class="col-md-10">
                 <div class="row g-2">
                     <div class="col-md-12">
-                        <form action="{% url 'search' %}" method="get">
-                            <input type="text" class="form-control border-0 py-3" name="query" value="{{ search_query}}"
+                            <input type="text" class="form-control border-0 py-3" name="query" {% if search_query %}
+                                   value="{{ search_query}}" {% endif %}
                                    placeholder="Encontrar Propiedad...">
-                        </form>
                     </div>
                 </div>
             </div>
@@ -54,6 +54,7 @@
         </div>
     </div>
 </div>
+</form>
 <!-- Search End -->
 
 
@@ -183,7 +184,7 @@
                     </div>
                     {% endfor %}
                     <div class="col-12 text-center">
-                        <a class="btn btn-primary py-3 px-5" href="">Browse More Property</a>
+                        <a class="btn btn-custom py-3 px-5" href="{% pageurl list_page %}">Ver mas inmuebles</a>
                     </div>
                 </div>
             </div>
@@ -192,8 +193,6 @@
 </div>
 {% endif %}
 <!-- Property List End -->
-
-
 
 
 {% endblock %}

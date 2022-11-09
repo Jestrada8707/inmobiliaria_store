@@ -3,21 +3,46 @@
 
 {% block body_class %}template-searchresults{% endblock %}
 
-{% block title %}Search{% endblock %}
+{% block title %}Búsqueda{% endblock %}
 
 {% block content %}
-<h1>Search</h1>
-
+<!-- Header Start -->
+<div class="container-fluid header bg-white p-0">
+    <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
+        <div class="col-md-6 p-5 mt-lg-5">
+            <h1 class="display-5 animated fadeIn mb-4 mt-5">Resultados de la Búsqueda</h1>
+        </div>
+    </div>
+</div>
+<!-- Header End -->
+<!-- Search Start -->
 <form action="{% url 'search' %}" method="get">
-    <input type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
-    <input type="submit" value="Search" class="button">
-</form>
+<div class="container-fluid search-bar-color mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
+    <div class="container">
+        <div class="row g-2">
+            <div class="col-md-10">
+                <div class="row g-2">
+                    <div class="col-md-12">
+                            <input type="text" class="form-control border-0 py-3" name="query" {% if search_query %}
+                                   value="{{ search_query}}" {% endif %}
+                                   placeholder="Encontrar Propiedad...">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-dark border-0 w-100 py-3" type="submit">Buscar</button>
+            </div>
 
+        </div>
+    </div>
+</div>
+</form>
+<!-- Search End -->
 {% if search_results %}
-<ul>
+<ul class="text-center">
     {% for result in search_results %}
-    <li>
-        <h4><a href="{% pageurl result %}">{{ result }}</a></h4>
+    <li class="list-group">
+        <h5><a href="{% pageurl result %}">{{ result }}</a></h5>
         {% if result.search_description %}
         {{ result.search_description }}
         {% endif %}
@@ -26,13 +51,21 @@
 </ul>
 
 {% if search_results.has_previous %}
-<a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
+<a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Anterior</a>
 {% endif %}
 
 {% if search_results.has_next %}
-<a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
+<a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Siguiente</a>
 {% endif %}
 {% elif search_query %}
-No results found
+<!-- Header Start -->
+<div class="container-fluid bg-white p-0">
+    <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
+        <div class="col-md-6 p-5 mt-lg-5">
+            <h4 class=" animated fadeIn mb-4">No se encontraron resultados.</h4>
+        </div>
+    </div>
+</div>
+<!-- Header End -->
 {% endif %}
 {% endblock %}

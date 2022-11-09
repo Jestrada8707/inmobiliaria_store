@@ -87,10 +87,9 @@
             </li>
             <li class="nav-item category-margin">
                 {% if self.categoria%}
-                {% for cat in self.categoria.all%}
-                <a href="{{ self.get_parent.url}}?categoria={{ cat_slug }}">
-                    <p class="category-subtitle py-3">{{ cat.nombre_categoria}}</p>
-                </a>
+                {% for cat in self.categoria.all %}
+                <p class="category-subtitle py-3">{{ cat.nombre_categoria}}</p>
+                {% if not forloop.last %}{% endif %}
                 {% endfor %}
                 {% endif %}
             </li>
@@ -99,11 +98,10 @@
                     class="category-title">Ubicación:</small>
             </li>
             <li class="nav-item category-margin">
-                {% if self.ubicacion%}
-                {% for cat in self.ubicacion.all%}
-                <a href="{{ self.get_parent.url}}?ubicacion={{ cat_slug }}">
-                    <p class="category-subtitle py-3">{{ cat.nombre_ubicacion}}</p>
-                </a>
+                {% if self.ubicacion %}
+                {% for u in self.ubicacion.all%}
+                <p class="category-subtitle py-3">{{ u.nombre_ubicacion}}</p>
+                {% if not forloop.last %}{% endif %}
                 {% endfor %}
                 {% endif %}
             </li>
@@ -112,10 +110,9 @@
             </li>
             <li class="nav-item category-margin">
                 {% if self.mercado%}
-                {% for cat in self.mercado.all%}
-                <a href="{{ self.get_parent.url}}?mercado={{ cat_slug }}">
-                    <p class="category-subtitle py-3">{{ cat.nombre_mercado}}</p>
-                </a>
+                {% for m in self.mercado.all%}
+                <p class="category-subtitle py-3">{{ m.nombre_mercado}}</p>
+                {% if not forloop.last %}{% endif %}
                 {% endfor %}
                 {% endif %}
             </li>

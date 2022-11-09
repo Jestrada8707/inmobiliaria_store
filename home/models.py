@@ -13,7 +13,7 @@ from wagtail.snippets.models import register_snippet
 
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 
-from house.models import Categorias, AgregarPropiedad
+from house.models import Categorias, AgregarPropiedad, ListadoPropiedades
 
 
 class HomePage(RoutablePageMixin, Page):
@@ -36,6 +36,7 @@ class HomePage(RoutablePageMixin, Page):
         context['posts'] = AgregarPropiedad.objects.live().public().order_by('-first_published_at')[:6]
         context['categorias'] = Categorias.objects.all()
         context['banner_sell'] = BanerVenta.objects.all()
+        context['list_page'] = ListadoPropiedades.objects.first()
         return context
 
     @route(r'^cat/(?P<cat_slug>[-\w]*)/$', name="category_view")

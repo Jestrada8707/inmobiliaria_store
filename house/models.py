@@ -29,8 +29,17 @@ class ListadoPropiedades(RoutablePageMixin, Page):
 
     )
 
+    imagen_banner = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=False,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
     content_panels = Page.content_panels + [
         FieldPanel('lista_propiedades'),
+        ImageChooserPanel('imagen_banner')
     ]
 
     def get_context(self, request, *args, **kwargs):
