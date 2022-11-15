@@ -1,0 +1,89 @@
+
+sidebar-loading__inner, .sidebar__inner {
+    --tw-bg-opacity: 1;
+    background-color: #8c8c8c;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: 100%;
+}
+
+.sidebar-footer {
+    --tw-bg-opacity: 1;
+    background-color: #6e8196;
+    margin-top: auto;
+    transition: width .15s ease !important;
+}
+
+.w-bg-primary {
+    --tw-bg-opacity: 1;
+    background-color: #264261;
+}
+
+.w-bg-primary:hover {
+    --tw-bg-opacity: 1;
+    background-color: #0e2e50 !important;
+}
+
+.w-bg-primary-200::selection {
+    --tw-bg-opacity: 1;
+    background-color: #0e2e50 !important;
+}
+
+header {
+    background-color: #fab51b;
+}
+
+header .user-name {
+    color: #0e2e50;
+}
+
+header h1 {
+    color: #ffffff;
+}
+
+.sidebar-menu-item--active {
+    --tw-bg-opacity: 1;
+    background-color: #264261;
+    text-shadow: -1px -1px 0 #0000004d;
+}
+
+.c-page-explorer__header {
+    background-color: #264261;
+    border-bottom-width: .0625rem;
+    border-color: #264261;
+    color: #ffffff;
+}
+
+.c-page-explorer {
+    background-color: #0e2e50;
+}
+
+.page-explorer .listing .index {
+    background-color: #fbc348;
+    color: #fff;
+}
+
+.breadcrumb {
+    background: #e1a218;
+}
+
+.breadcrumb .arrow_right_icon {
+    color: #264261;
+}
+
+.sidebar-sub-menu-panel {
+    --tw-bg-opacity: 1;
+    background-color: #264261;
+}
+
+.page-explorer .listing .index .button.bicolor {
+	background: #264261;
+}
+.t-inverted .u-btn-current {
+	background-color: #264261;
+}
+
+.listing .children a {
+	color: #264261;
+}

@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     "search",
     "social_media_setting",
     "custom_nav_button",
+    "dashboard",
 
     'wagtail.contrib.settings',
     'wagtail.contrib.routable_page',
