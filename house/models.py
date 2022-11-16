@@ -259,7 +259,7 @@ class ImagenesInmueble(Orderable):
         'wagtailimages.Image',
         null=True,
         blank=False,
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         related_name='+'
     )
 
