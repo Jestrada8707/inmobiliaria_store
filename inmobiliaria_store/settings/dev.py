@@ -11,6 +11,12 @@ ALLOWED_HOSTS = ["*"]
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+        "LOCATION": "/Users/julianestrada/Desktop/inmobiliaria_final/inmobiliaria_store/cache"
+    }
+}
 
 try:
     from .local import *

@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
-{% load wagtailcore_tags wagtailimages_tags wagtailroutablepage_tags humanize %}
+{% load wagtailcore_tags wagtailimages_tags wagtailroutablepage_tags humanize cache %}
 
 {% block content %}
-
+{% cache 3600 header %}
 <!-- Header Start -->
 <div class="container-fluid header bg-white p-0">
     <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
@@ -32,6 +32,7 @@
     </div>
 </div>
 <!-- Header End -->
+{% endcache %}
 
 
 <!-- Search Start -->
@@ -90,7 +91,7 @@
 {% endif %}
 <!-- Category End -->
 
-
+{% cache 3600 sell_banner %}
 <!-- About Start -->
 {% if banner_sell %}
 <div class="container-xxl py-5">
@@ -121,6 +122,7 @@
     </div>
 </div>
 {% endif %}
+{% endcache %}
 <!-- About End -->
 
 

@@ -1,4 +1,4 @@
-{% load static wagtailcore_tags wagtailuserbar menus_tags %}
+{% load static wagtailcore_tags wagtailuserbar menus_tags cache %}
 {% get_menu 'main' as navigation %}
 <html lang="es">
 <head>
@@ -72,8 +72,10 @@
                     <a href="/"
                        class="nav-item nav-link {% if request.get_full_path == '/'  %} active {% endif %}">Inicio</a>
                     {% for item in navigation.nav_button.all %}
+                    {% cache 3600 nav_item %}
                     <a href="{{ item.link }}" {% if item.abrir_en_nueva_ventana %} target="_blank" {% endif %}
                        class="nav-item nav-link{% if item.link == request.get_full_path  %} active {% endif %}">{{ item.title }}</a>
+                    {% endcache %}
                     {% endfor %}
                 </div>
             </div>
@@ -85,6 +87,7 @@
 
     {% endblock %}
     <!-- Footer Start -->
+    {% cache 3600 footer %}
     <div class="container-fluid bg-dark text-white-50 footer pt-2 mt-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
@@ -123,6 +126,7 @@
             </div>
         </div>
     </div>
+    {% endcache %}
     <!-- Footer End -->
 </div>
 
